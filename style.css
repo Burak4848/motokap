@@ -236,4 +236,36 @@ footer{padding:4.5rem 1.6rem 2.6rem;border-top:1px solid rgba(255,255,255,.08);t
 .faq-answer li::before{content:'→';position:absolute;left:0;color:var(--accent,#e0c97f);opacity:.7;}
 .faq-answer strong{color:var(--white);font-weight:500;}
 
+/* ===== MOBILE OPTIMIZATION ===== */
+@media (max-width: 768px) {
+  /* Logos */
+  .nav-logo-img { height: 90px; transform: translateY(16px); }
+  .footer-logo-img { height: 100px; }
+  .about-wordmark-img { height: clamp(100px, 16vw, 150px); }
+  
+  /* Sections & Spacing */
+  .section { padding: 3.5rem 1.2rem; }
+  .page-header { padding: 6.5rem 1.2rem 2.5rem; }
+  .final-cta { padding: 4rem 1.2rem; }
+  
+  /* Product Stage (overriding inline styles) */
+  .product-stage { height: 45vh !important; max-height: 380px !important; }
+  
+  /* Grids */
+  .feature-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .contact-grid { grid-template-columns: 1fr; gap: 2rem; padding-bottom: 3rem; }
+  .spec-grid { grid-template-columns: 1fr; }
+  
+  /* Typography & Layout Tweaks */
+  .section-head { margin-bottom: 2rem; }
+  .section-head h2 { font-size: 1.6rem; }
+  .model-name { font-size: 2.2rem; }
+  .btn-outline, .btn-solid { padding: 0.9rem 2rem; width: 100%; display: flex; text-align: center; justify-content: center; }
+  .price-block { margin-bottom: 1.5rem; }
+  
+  /* FAQ */
+  .faq-question { padding: 1rem; font-size: .85rem; }
+  .faq-item.open .faq-answer { padding: 0 1rem 1rem; }
+}
+
 @media (prefers-reduced-motion:reduce){.moto-img{animation:none;}}
