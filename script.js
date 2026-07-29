@@ -1,4 +1,4 @@
-(function(){
+﻿(function(){
   /* ---------- loader (index only) ---------- */
   var loader = document.getElementById('loader');
   if(loader){
@@ -67,9 +67,9 @@
   var modelNameEl = document.querySelector('.model-name');
   if(modelNameEl){
     var variants = [
-      {name:"MOTOKAP ORTA BOY", tag:"Orta Sınıf Motosikletler İçin", price:"Bizi Arayın", img:"motokap orta boy.png", link:"motokap-orta.html"},
-      {name:"MOTOKAP BÜYÜK BOY", tag:"Büyük Hacimli Motosikletler İçin", price:"Bizi Arayın", img:"motokap büyükboy .png", link:"motokap-buyuk.html"},
-      {name:"MOTOKAP İKİ MOTOSİKLETLİK", tag:"İki Motosiklet veya ATV İçin", price:"Bizi Arayın", img:"Motokap iki motorlukatv.png", link:"motokap-kucuk.html"}
+      {name:"MOTOKAP ORTA BOY", tag:"Orta Sınıf Motosikletler İçin", price:"Bizi Arayın", img:"motokap orta boy.webp", link:"motokap-orta.html"},
+      {name:"MOTOKAP BÜYÜK BOY", tag:"Büyük Hacimli Motosikletler İçin", price:"Bizi Arayın", img:"motokap büyükboy .webp", link:"motokap-buyuk.html"},
+      {name:"MOTOKAP İKİ MOTOSİKLETLİK", tag:"İki Motosiklet veya ATV İçin", price:"Bizi Arayın", img:"Motokap iki motorlukatv.webp", link:"motokap-kucuk.html"}
     ];
     var vIndex = 0;
     var variantDots = document.querySelectorAll('#variantDots span');

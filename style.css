@@ -22,7 +22,7 @@ img,svg{display:block;max-width:100%;}
 h1,h2,h3{font-weight:700;letter-spacing:-.01em;}
 
 /* ===== GRAIN / CURSOR ===== */
-.grain{position:fixed;inset:0;z-index:900;pointer-events:none;opacity:.035;mix-blend-mode:overlay;
+.grain{display:none;position:fixed;inset:0;z-index:900;pointer-events:none;opacity:.035;mix-blend-mode:overlay;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 .cursor-dot{position:fixed;top:0;left:0;width:8px;height:8px;border-radius:50%;background:var(--white);pointer-events:none;z-index:1000;transform:translate(-50%,-50%);mix-blend-mode:difference;transition:width .3s var(--ease),height .3s var(--ease);}

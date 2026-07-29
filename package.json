@@ -1,0 +1,24 @@
+{
+  "name": "motokap",
+  "version": "1.0.0",
+  "description": "",
+  "main": "convert.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Burak4848/motokap.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Burak4848/motokap/issues"
+  },
+  "homepage": "https://github.com/Burak4848/motokap#readme",
+  "dependencies": {
+    "sharp": "^0.35.3"
+  }
+}
