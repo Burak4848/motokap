@@ -7,6 +7,15 @@
     });
   }
 
+  /* ---------- nav scroll effect ---------- */
+  var mainNav = document.getElementById('mainNav');
+  if(mainNav){
+    window.addEventListener('scroll', function(){
+      if(window.scrollY > 60){ mainNav.classList.add('scrolled'); }
+      else { mainNav.classList.remove('scrolled'); }
+    }, {passive:true});
+  }
+
   /* ---------- mobile menu ---------- */
   var hamburgerBtn = document.getElementById('hamburgerBtn');
   var mobileMenu = document.getElementById('mobileMenu');
@@ -58,10 +67,9 @@
   var modelNameEl = document.querySelector('.model-name');
   if(modelNameEl){
     var variants = [
-      {name:"MOTOKAP SPORT", tag:"Spor Motosikletler İçin", price:"₺12.900", img:"gallery1.png"},
-      {name:"MOTOKAP CLASSIC", tag:"Naked & Standart Modeller İçin", price:"₺14.900", img:"gallery2.png"},
-      {name:"MOTOKAP TOURING", tag:"Touring & Adventure İçin", price:"₺17.900", img:"gallery3.png"},
-      {name:"MOTOKAP SCOOTER", tag:"Scooter Modelleri İçin", price:"₺10.900", img:"gallery1.png"}
+      {name:"MOTOKAP ORTA BOY", tag:"Orta Sınıf Motosikletler İçin", price:"Bizi Arayın", img:"motokap orta boy.png", link:"motokap-orta.html"},
+      {name:"MOTOKAP BÜYÜK BOY", tag:"Büyük Hacimli Motosikletler İçin", price:"Bizi Arayın", img:"motokap büyükboy .png", link:"motokap-buyuk.html"},
+      {name:"MOTOKAP İKİ MOTOSİKLETLİK", tag:"İki Motosiklet veya ATV İçin", price:"Bizi Arayın", img:"Motokap iki motorlukatv.png", link:"motokap-kucuk.html"}
     ];
     var vIndex = 0;
     var variantDots = document.querySelectorAll('#variantDots span');
@@ -136,4 +144,14 @@
   if(pageName && pageName !== 'home' && typeof fbq === 'function'){
     fbq('track','ViewContent',{content_name:pageName});
   }
+  /* ---------- FAQ accordion ---------- */
+  document.querySelectorAll('.faq-question').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var item = btn.parentElement;
+      var isOpen = item.classList.contains('open');
+      // close all
+      document.querySelectorAll('.faq-item').forEach(function(fi){ fi.classList.remove('open'); });
+      if(!isOpen) item.classList.add('open');
+    });
+  });
 })();
