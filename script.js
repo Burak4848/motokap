@@ -67,11 +67,18 @@
   var modelNameEl = document.querySelector('.model-name');
   if(modelNameEl){
     var variants = [
-      {name:"MOTOKAP ORTA BOY", tag:"Orta Sınıf Motosikletler İçin", price:"Bizi Arayın", img:"motokap orta boy.webp", link:"motokap-orta.html"},
-      {name:"MOTOKAP BÜYÜK BOY", tag:"Büyük Hacimli Motosikletler İçin", price:"Bizi Arayın", img:"motokap büyükboy .webp", link:"motokap-buyuk.html"},
-      {name:"MOTOKAP İKİ MOTOSİKLETLİK", tag:"İki Motosiklet veya ATV İçin", price:"Bizi Arayın", img:"Motokap iki motorlukatv.webp", link:"motokap-kucuk.html"}
+      {name:"MOTOKAP ORTA BOY", tag:"Orta Sınıf Motosikletler İçin", price:"Bizi Arayın", img:"orta.webp", link:"motokap-orta.html"},
+      {name:"MOTOKAP BÜYÜK BOY", tag:"Büyük Hacimli Motosikletler İçin", price:"Bizi Arayın", img:"buyuk.webp", link:"motokap-buyuk.html"},
+      {name:"MOTOKAP İKİ MOTOSİKLETLİK", tag:"İki Motosiklet veya ATV İçin", price:"Bizi Arayın", img:"ikili.webp", link:"motokap-ikili.html"}
     ];
     var vIndex = 0;
+
+    var autoPlayTimer = setInterval(function(){ stepVariant(1); resetTimer(); }, 4000);
+    function resetTimer() {
+      clearInterval(autoPlayTimer);
+      autoPlayTimer = setInterval(function(){ stepVariant(1); resetTimer(); }, 4000);
+    }
+
     var variantDots = document.querySelectorAll('#variantDots span');
 
     function renderVariant(){
@@ -94,13 +101,13 @@
     }
     var arrowLeft = document.getElementById('arrowLeft');
     var arrowRight = document.getElementById('arrowRight');
-    if(arrowLeft) arrowLeft.addEventListener('click', function(){ stepVariant(-1); });
-    if(arrowRight) arrowRight.addEventListener('click', function(){ stepVariant(1); });
+    if(arrowLeft) arrowLeft.addEventListener('click', function(){ stepVariant(-1); resetTimer(); });
+    if(arrowRight) arrowRight.addEventListener('click', function(){ stepVariant(1); resetTimer(); });
     var prevBtn = document.querySelector('.prev-variant');
     var nextBtn = document.querySelector('.next-variant');
-    if(prevBtn) prevBtn.addEventListener('click', function(){ stepVariant(-1); });
-    if(nextBtn) nextBtn.addEventListener('click', function(){ stepVariant(1); });
-    variantDots.forEach(function(d,i){ d.addEventListener('click', function(){ vIndex=i; renderVariant(); }); });
+    if(prevBtn) prevBtn.addEventListener('click', function(){ stepVariant(-1); resetTimer(); });
+    if(nextBtn) nextBtn.addEventListener('click', function(){ stepVariant(1); resetTimer(); });
+    variantDots.forEach(function(d,i){ d.addEventListener('click', function(){ vIndex=i; renderVariant(); resetTimer(); }); });
     renderVariant();
   }
 
