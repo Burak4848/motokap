@@ -67,16 +67,16 @@
   var modelNameEl = document.querySelector('.model-name');
   if(modelNameEl){
     var variants = [
-      {name:"MOTOKAP ORTA BOY", tag:"Orta Sınıf Motosikletler İçin", price:"Bizi Arayın", img:"orta.webp", link:"motokap-orta.html"},
-      {name:"MOTOKAP BÜYÜK BOY", tag:"Büyük Hacimli Motosikletler İçin", price:"Bizi Arayın", img:"buyuk.webp", link:"motokap-buyuk.html"},
-      {name:"MOTOKAP İKİ MOTOSİKLETLİK", tag:"İki Motosiklet veya ATV İçin", price:"Bizi Arayın", img:"ikili.webp", link:"motokap-ikili.html"}
+      {name:"MOTOKAP ORTA BOY", tag:"Standart Motosikletler İçin Maksimum Koruma", price:"Bizi Arayın", img:"orta.webp", link:"motokap-orta"},
+      {name:"MOTOKAP BÜYÜK BOY", tag:"Büyük Hacimli & Çantalı Modeller İçin", price:"Bizi Arayın", img:"buyuk.webp", link:"motokap-buyuk"},
+      {name:"MOTOKAP İKİ MOTOSİKLETLİK", tag:"İki Motosiklet veya ATV İçin Geniş Alan", price:"Bizi Arayın", img:"ikili.webp", link:"motokap-ikili"}
     ];
     var vIndex = 0;
 
-    var autoPlayTimer = setInterval(function(){ stepVariant(1); resetTimer(); }, 4000);
+    var autoPlayTimer = setInterval(function(){ stepVariant(1); resetTimer(); }, 8000);
     function resetTimer() {
       clearInterval(autoPlayTimer);
-      autoPlayTimer = setInterval(function(){ stepVariant(1); resetTimer(); }, 4000);
+      autoPlayTimer = setInterval(function(){ stepVariant(1); resetTimer(); }, 8000);
     }
 
     var variantDots = document.querySelectorAll('#variantDots span');
@@ -91,14 +91,23 @@
       document.querySelector('.prev-variant-name').textContent = prev.name;
       document.querySelector('.next-variant-name').textContent = next.name;
       var imgEl = document.getElementById('productImage');
-      if (imgEl) { imgEl.src = v.img; imgEl.alt = v.name; }
+      var galEl = document.getElementById('galleryImage');
+      if (imgEl) { 
+        imgEl.src = v.img; imgEl.alt = v.name; 
+        imgEl.classList.add('active');
+        if(galEl) galEl.classList.remove('active');
+      }
+      var linkBtn = document.getElementById('productLinkBtn');
+      if (linkBtn) { linkBtn.href = v.link; }
+      
+      if(typeof resetCrossfade === 'function') resetCrossfade();
       variantDots.forEach(function(d,i){ d.classList.toggle('active', i===vIndex); });
     }
     function stepVariant(dir){
       vIndex = (vIndex + dir + variants.length) % variants.length;
       if(typeof gsap !== 'undefined'){ 
         gsap.fromTo('.hero-copy', {opacity:0, y:8}, {opacity:1, y:0, duration:.4, ease:"power2.out"}); 
-        gsap.fromTo('#productImage', {opacity:0, scale:0.96}, {opacity:1, scale:1, duration:0.8, ease:"power2.out", clearProps:"scale"});
+        gsap.fromTo('#productImage', {opacity:0, scale:0.96}, {opacity:1, scale:1, duration:0.8, ease:"power2.out", clearProps:"all"});
       }
       renderVariant();
     }
@@ -116,7 +125,7 @@
         vIndex = i; 
         if(typeof gsap !== 'undefined'){ 
           gsap.fromTo('.hero-copy', {opacity:0, y:8}, {opacity:1, y:0, duration:.4, ease:"power2.out"}); 
-          gsap.fromTo('#productImage', {opacity:0, scale:0.96}, {opacity:1, scale:1, duration:0.8, ease:"power2.out", clearProps:"scale"});
+          gsap.fromTo('#productImage', {opacity:0, scale:0.96}, {opacity:1, scale:1, duration:0.8, ease:"power2.out", clearProps:"all"});
         }
         renderVariant(); 
         resetTimer(); 
@@ -175,4 +184,24 @@
       if(!isOpen) item.classList.add('open');
     });
   });
+
+  /* ---------- gallery crossfade ---------- */
+  var mainImg = document.getElementById('productImage');
+  var galImg = document.getElementById('galleryImage');
+  var crossfadeTimer = null;
+  window.resetCrossfade = function() {
+    if(mainImg && galImg){
+      clearInterval(crossfadeTimer);
+      crossfadeTimer = setInterval(function(){
+        if(mainImg.classList.contains('active')){
+          mainImg.classList.remove('active');
+          galImg.classList.add('active');
+        } else {
+          galImg.classList.remove('active');
+          mainImg.classList.add('active');
+        }
+      }, 4000);
+    }
+  };
+  resetCrossfade();
 })();
