@@ -1,4 +1,4 @@
-﻿(function(){
+(function(){
   /* ---------- loader (index only) ---------- */
   var loader = document.getElementById('loader');
   if(loader){
@@ -96,7 +96,10 @@
     }
     function stepVariant(dir){
       vIndex = (vIndex + dir + variants.length) % variants.length;
-      if(typeof gsap !== 'undefined'){ gsap.fromTo('.hero-copy', {opacity:0, y:8}, {opacity:1, y:0, duration:.4, ease:"power2.out"}); }
+      if(typeof gsap !== 'undefined'){ 
+        gsap.fromTo('.hero-copy', {opacity:0, y:8}, {opacity:1, y:0, duration:.4, ease:"power2.out"}); 
+        gsap.fromTo('#productImage', {opacity:0, scale:0.96}, {opacity:1, scale:1, duration:0.8, ease:"power2.out", clearProps:"scale"});
+      }
       renderVariant();
     }
     var arrowLeft = document.getElementById('arrowLeft');
@@ -107,7 +110,18 @@
     var nextBtn = document.querySelector('.next-variant');
     if(prevBtn) prevBtn.addEventListener('click', function(){ stepVariant(-1); resetTimer(); });
     if(nextBtn) nextBtn.addEventListener('click', function(){ stepVariant(1); resetTimer(); });
-    variantDots.forEach(function(d,i){ d.addEventListener('click', function(){ vIndex=i; renderVariant(); resetTimer(); }); });
+    variantDots.forEach(function(d,i){ 
+      d.addEventListener('click', function(){ 
+        if(vIndex === i) return;
+        vIndex = i; 
+        if(typeof gsap !== 'undefined'){ 
+          gsap.fromTo('.hero-copy', {opacity:0, y:8}, {opacity:1, y:0, duration:.4, ease:"power2.out"}); 
+          gsap.fromTo('#productImage', {opacity:0, scale:0.96}, {opacity:1, scale:1, duration:0.8, ease:"power2.out", clearProps:"scale"});
+        }
+        renderVariant(); 
+        resetTimer(); 
+      }); 
+    });
     renderVariant();
   }
 
